@@ -2,13 +2,24 @@
 {% block title %}
     <p><h1>Welcome To The Darts World!</h1></p>
     <br>
-    <br>
 {% endblock %}
 {% block content %}
     <div class="container">
-  <div class="row">
-    <div class="col order-last">
-      <p>Name: {{ p2name }}</p>
+        <div class="row">
+            <div class="col order-last">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ p2name }}</td>
+                        </tr>
+                     </tbody>
+                </table>
+        <br>
         {% if boolB %}
             <form action={{ url_for("player2B") }} method="POST">
                 Score: <input type="number" name="sc2" required>
@@ -16,7 +27,10 @@
                 <input type="hidden" name="turnB" value="2">
             </form>
         {% endif %}
-    <p>Required Score: {{ scoreB }}</p>
+        <br>
+        <br>
+    <div class="d-inline p-2 bg-primary text-white">Required Score: {{ scoreB }}</div>
+
     <!-- uncomment if we use recommend functions
     {% if bool2 %}
         {% if str1 or str2 or str3 %}
@@ -24,9 +38,22 @@
         {% endif %}
     {% endif %}
     -->
+
     </div>
     <div class="col">
-      <p>Name: {{ p1name }}</p>
+        <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ p1name }}</td>
+                        </tr>
+                     </tbody>
+                </table>
+        <br>
         {% if boolA %}
             <form action={{ url_for("player1A") }} method="POST">
                 Score: <input type="number" name="sc1" required>
@@ -34,7 +61,10 @@
                 <input type="hidden" name="turnA" value="2">
              </form>
         {% endif %}
-    <p>Required Score: {{ scoreA }}</p>
+        <br>
+        <br>
+    <div class="d-inline p-2 bg-primary text-white">Required Score: {{ scoreA }}</div>
+
     <!-- uncomment if we use recommend functions
     {% if bool1 %}
         {% if str1 or str2 or str3 %}
@@ -42,6 +72,7 @@
         {% endif %}
     {% endif %}
     -->
+
     </div>
   </div>
 </div>
