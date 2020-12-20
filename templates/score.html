@@ -17,6 +17,11 @@
             </form>
         {% endif %}
     <p>Required Score: {{ scoreB }}</p>
+    {% if bool2 %}
+        {% if str1 or str2 or str3 %}
+            <p>Recommended Shots: {{ str1 }} {{ str2 }} {{ str3 }}</p>
+        {% endif %}
+    {% endif %}
     </div>
     <div class="col">
       <p>Name: {{ p1name }}</p>
@@ -28,6 +33,11 @@
              </form>
         {% endif %}
     <p>Required Score: {{ scoreA }}</p>
+    {% if bool1 %}
+        {% if str1 or str2 or str3 %}
+            <p>Recommended Shots: {{ str1 }} {{ str2 }} {{ str3 }}</p>
+        {% endif %}
+    {% endif %}
     </div>
   </div>
 </div>

@@ -19,9 +19,34 @@ turnB = -1
 boolA = True
 boolB = True
 
+# for recommend functions
+#str1 = None
+#str2 = None
+#str3 = None
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/info', methods=['GET', 'POST'])
 def info():
+    global turnA
+    global turnB
+    global boolA
+    global boolB
+    #global str1
+    #global str2
+    #global str3
+
+    # these global variables for sequencing whose turn after whom
+    turnA = -1
+    turnB = -1
+    boolA = True
+    boolB = True
+
+    # for recommend functions
+    #str1 = None
+    #str2 = None
+    #str3 = None
+
+    # for checking whether already have accounts with same name
     nameBool1 = False
     nameBool2 = False
 
@@ -82,6 +107,16 @@ def info():
 
 @app.route('/score')
 def score():
+    #global str1
+    #global str2
+    #global str3
+
+    # to maintain whose recommend call it is
+    #bool1 = False
+    #bool2 = False
+
+    p1 = Calculation()  # object creation for Calculation class
+
     if "player1" in session:
         player1 = session["player1"]
 
@@ -99,6 +134,44 @@ def score():
     scoreB = cur.fetchone()
     cur.close()
 
+    """
+    # for recommended turns for Player1(for 3 shots)
+    if turnA == -1:
+        if ((int(scoreA[0]) <= 180) and (int(scoreA[0]) >= 101)):
+            str1, str2, str3 = p1.recommend_func(int(scoreA[0]))
+            bool1 = True
+    # for recommended turns for Player1(for 2 shots)
+    if turnA == 2:
+        if ((int(scoreA[0]) <= 120) and (int(scoreA[0]) >= 1)):
+            str1, str2, str3 = p1.recommend_func2(int(scoreA[0]))
+            bool1 = True
+
+    # for recommended turns for Player1(for single shot)
+    if turnA == 1:
+        if ((int(scoreA[0]) <= 60) and (int(scoreA[0]) >= 1)):
+            str1, str2, str3 = p1.recommend_func3(int(scoreA[0]))
+            bool1 = True
+
+    # for recommended turns for Player2(for 3 shots)
+    if turnB == -1:
+        if ((int(scoreB[0]) <= 180) and (int(scoreB[0]) >= 101)):
+            str1, str2, str3 = p1.recommend_func(int(scoreB[0]))
+            bool2 = True
+
+    # for recommended turns for Player2(for 2 shots)
+    if turnB == 2:
+        if ((int(scoreB[0]) <= 120) and (int(scoreB[0]) >= 1)):
+            str1, str2, str3 = p1.recommend_func2(int(scoreB[0]))
+            bool2 = True
+
+    # for recommended turns for Player2(for single shot)
+    if turnB == 1:
+        if ((int(scoreB[0]) <= 60) and (int(scoreB[0]) >= 1)):
+            str1, str2, str3 = p1.recommend_func3(int(scoreB[0]))
+            bool2 = True
+    """
+
+    #when use recommend function then use the given parameters in below template (str1=str1, str2=str2, str3=str3, bool1=bool1, bool2=bool2)
     return render_template("score.html", p1name=p1name[0], p2name=p2name[0], scoreA=scoreA[0], scoreB=scoreB[0], boolA=boolA, boolB=boolB)
 
 @app.route('/player1A', methods=['GET', 'POST'])
@@ -106,7 +179,9 @@ def player1A():
     global turnA
     global boolA
     global boolB
-    p1 = Calculation()
+
+    p1 = Calculation() # object creation for Calculation class
+
     if "player1" in session:
         player1 = session["player1"]
 
@@ -135,8 +210,7 @@ def player1A():
             boolB = True
             turnA = -1
 
-
-        result = p1.playerA(scoreA[0], int(score1))
+        result = p1.playerA(int(scoreA[0]), int(score1))
 
         # if someone scores more than required
         if isinstance(result, str):
@@ -198,7 +272,7 @@ def player2B():
             boolA = True
             turnB = -1
 
-        result = p2.playerB(scoreB[0], int(score2))
+        result = p2.playerB(int(scoreB[0]), int(score2))
 
         if isinstance(result, str):
             flash(result, "danger")
