@@ -1,0 +1,11 @@
+create database dart;
+use dart;
+
+create table player(id int auto_increment primary key, name varchar(50) not null);
+
+create table score(score int not null, id int not null primary key, foreign key(id) references player(id));
+
+CREATE TRIGGER auto_score
+AFTER INSERT ON player
+FOR EACH ROW
+INSERT INTO score VALUES(501, new.id);
