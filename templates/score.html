@@ -1,25 +1,34 @@
 {% extends "layout.html" %}
 {% block title %}
+    <p><h1>Welcome To The Darts World!</h1></p>
+    <br>
+    <br>
 {% endblock %}
 {% block content %}
-    <p>Name: {{ p1name }}</p>
-    {% if boolA %}
-    <form action={{ url_for("player1A") }} method="POST">
-        Score: <input type="number" name="sc1">
-        <input type="submit" value="Calculate">
-        <input type="hidden" name="turnA" value="2">
-    </form>
-    {% endif %}
-    <p>Required Score: {{ scoreA }}</p>
-
-
-    <p>Name: {{ p2name }}</p>
-    {% if boolB %}
-    <form action={{ url_for("player2B") }} method="POST">
-        Score: <input type="number" name="sc2">
-        <input type="submit" value="Calculate">
-        <input type="hidden" name="turnB" value="2">
-    </form>
-    {% endif %}
+    <div class="container">
+  <div class="row">
+    <div class="col order-last">
+      <p>Name: {{ p2name }}</p>
+        {% if boolB %}
+            <form action={{ url_for("player2B") }} method="POST">
+                Score: <input type="number" name="sc2" required>
+                <input type="submit" value="Calculate">
+                <input type="hidden" name="turnB" value="2">
+            </form>
+        {% endif %}
     <p>Required Score: {{ scoreB }}</p>
+    </div>
+    <div class="col">
+      <p>Name: {{ p1name }}</p>
+        {% if boolA %}
+            <form action={{ url_for("player1A") }} method="POST">
+                Score: <input type="number" name="sc1" required>
+                <input type="submit" value="Calculate">
+                <input type="hidden" name="turnA" value="2">
+             </form>
+        {% endif %}
+    <p>Required Score: {{ scoreA }}</p>
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -43,31 +43,37 @@ def info():
             if not nameBool1:
                 cur.execute("INSERT INTO player(name) values(%s)", (name1,))
                 mysql.connection.commit()
+                cur.execute("SELECT id FROM player WHERE name = %s", (name1,))
+                id1 = cur.fetchone()
+                session["player1"] = int(id1[0])
             else:
                 cur.execute("SELECT id FROM player WHERE name = %s", (name1,))
                 id1 = cur.fetchone()
-                session["player1"] = id1[0]
+                session["player1"] = int(id1[0])
 
             if not nameBool2:
                 cur.execute("INSERT INTO player(name) values(%s)", (name2,))
                 mysql.connection.commit()
+                cur.execute("SELECT id FROM player WHERE name = %s", (name2,))
+                id2 = cur.fetchone()
+                session["player2"] = int(id2[0])
             else:
                 cur.execute("SELECT id FROM player WHERE name = %s", (name2,))
                 id2 = cur.fetchone()
-                session["player2"] = id2[0]
+                session["player2"] = int(id2[0])
 
         else:
             cur.execute("INSERT INTO player(name) values(%s)", (name1,))
             mysql.connection.commit()
             cur.execute("SELECT id FROM player WHERE name = %s", (name1,))
             id1 = cur.fetchone()
-            session["player1"] = id1[0]
+            session["player1"] = int(id1[0])
 
             cur.execute("INSERT INTO player(name) values(%s)", (name2,))
             mysql.connection.commit()
             cur.execute("SELECT id FROM player WHERE name = %s", (name2,))
             id2 = cur.fetchone()
-            session["player2"] = id2[0]
+            session["player2"] = int(id2[0])
 
         cur.close()
         return redirect(url_for("score"))
