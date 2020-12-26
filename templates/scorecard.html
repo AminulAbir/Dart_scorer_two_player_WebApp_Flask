@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href={{ url_for("info") }}>Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+    <p><h1>Scorecard:</h1></p>
+    <br>
+{% endblock %}
+{% block content %}
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Match Played</th>
+      <th scope="col">Number of Wins</th>
+      <th scope="col">Number of Losses</th>
+      <th scope="col">Win Rate</th>
+      <th scope="col">Score Bulls</th>
+      <th scope="col">Score 60s</th>
+      <th scope="col">Score 180s</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for info in infos %}
+        <tr>
+          <td>{{ info[1] }}</td>
+          <td>{{ info[2] }}</td>
+          <td>{{ info[3] }}</td>
+          <td>{{ info[4] }}</td>
+          <td>{{ info[5] }}</td>
+          <td>{{ info[6] }}</td>
+          <td>{{ info[7] }}</td>
+          <td>{{ info[8] }}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

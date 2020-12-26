@@ -16,38 +16,38 @@ class Calculation:
 
                 if self.totalA < 0:
                     self.totalA = total1 + d1
-                    return "You can not score more than required!"
+                    return "You can not score more than required!", True
                 else:
-                    return self.totalA
+                    return self.totalA, True
 
             elif (d1 > 20 and d1 < 61) and d1 % 3 == 0:
                 self.totalA = total1 - d1
                 if self.totalA < 0:
                     self.totalA = total1 + d1
-                    return "You can not score more than required!"
+                    return "You can not score more than required!", True
                 else:
-                    return self.totalA
+                    return self.totalA, True
 
             elif (d1 <= 20):
                 self.totalA = total1 - d1
                 if self.totalA < 0:
                     self.totalA = total1 + d1
-                    return "You can not score more than required!"
+                    return "You can not score more than required!", True
                 else:
-                    return self.totalA
+                    return self.totalA, True
 
             elif (d1 == 50 or d1 == 25):
                 self.totalA = total1 - d1
                 if self.totalA < 0:
                     self.totalA = total1 + d1
-                    return "You can not score more than required!"
+                    return "You can not score more than required!", True
                 else:
-                    return self.totalA
+                    return self.totalA, True
             else:
-                return 'Wrong number you have selected. Please try again'
+                return 'Wrong number you have selected. Please try again', False
 
         else:
-            return 'Wrong number you have selected. Please try again'
+            return 'Wrong number you have selected. Please try again', False
 
     def playerB(self, total2, d2):
         if d2 <= 60:
@@ -56,38 +56,38 @@ class Calculation:
 
                 if self.totalB < 0:
                     self.totalB = total2 + d2
-                    return "You can not score more than required!"
+                    return "You can not score more than required!", True
                 else:
-                    return self.totalB
+                    return self.totalB, True
 
             elif (d2 > 20 and d2 < 61) and d2 % 3 == 0:
                 self.totalB = total2 - d2
                 if self.totalB < 0:
                     self.totalB = total2 + d2
-                    return "You can not score more than required!"
+                    return "You can not score more than required!", True
                 else:
-                    return self.totalB
+                    return self.totalB, True
 
             elif (d2 <= 20):
                 self.totalB = total2 - d2
                 if self.totalB < 0:
                     self.totalB = total2 + d2
-                    return "You can not score more than required!"
+                    return "You can not score more than required!", True
                 else:
-                    return self.totalB
+                    return self.totalB, True
 
             elif (d2 == 50 or d2 == 25):
                 self.totalB = total2 - d2
                 if self.totalB < 0:
                     self.totalB = total2 + d2
-                    return "You can not score more than required!"
+                    return "You can not score more than required!", True
                 else:
-                    return self.totalB
+                    return self.totalB, True
             else:
-                return 'Wrong number you have selected. Please try again'
+                return 'Wrong number you have selected. Please try again', False
 
         else:
-            return 'Wrong number you have selected. Please try again'
+            return 'Wrong number you have selected. Please try again', False
 
 """
     def recommend_func(self, score):

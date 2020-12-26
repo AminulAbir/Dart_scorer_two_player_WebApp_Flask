@@ -3,7 +3,12 @@ use dart;
 
 create table player(id int auto_increment primary key, name varchar(50) not null);
 
-create table score(score int not null, id int not null primary key, foreign key(id) references player(id));
+create table score(score int not null, id int not null primary key, foreign key(id) references player(id) on delete cascade);
+
+create table scorecard(id int not null primary key, played int not null, win int not null, loss int not null, winRate decimal(5,2) not null, bulls int not null, score60 int not null, score180 int not null, foreign key (id) references player (id) on delete cascade);
+
+create view displayScore as
+select s.id, p.name, s.played, s.win, s.loss, s.winRate, s.bulls, s.score60, s.score180 from player as p join scorecard as s on p.id=s.id;
 
 CREATE TRIGGER auto_score
 AFTER INSERT ON player
