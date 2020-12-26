@@ -95,8 +95,12 @@ def info():
     nameData = cur.fetchall()
 
     if request.method == 'POST':
-        name1 = request.form.get("p1")
-        name2 = request.form.get("p2")
+        name1A = request.form.get("p1")
+        name2B = request.form.get("p2")
+
+        # for storing all names in small later
+        name1 = name1A.lower()
+        name2 = name2B.lower()
 
         if nameData:
             for data in nameData:
