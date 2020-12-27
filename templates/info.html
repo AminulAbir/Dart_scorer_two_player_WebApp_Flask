@@ -17,11 +17,21 @@
     <form action="#" method="POST">
         <div class="mb-3 row">
             <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Player_A Name: </label>
-            <input type="text" class="col-sm-5 col-form-label" id="exampleFormControlInput1" name="p1">
+            <input type="text" class="col-sm-5 col-form-label" list="playerA" name="p1" required>
+            <datalist id="playerA">
+                {% for name in nameData %}
+                    <option value="{{ name[0] }}">
+                {% endfor %}
+            </datalist>
         </div>
         <div class="mb-3 row">
             <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Player_B Name: </label>
-            <input type="text" class="col-sm-5 col-form-label" id="exampleFormControlInput1" name="p2">
+            <input type="text" class="col-sm-5 col-form-label" list="playerB" name="p2" required>
+            <datalist id="playerB">
+                {% for name in nameData %}
+                    <option value="{{ name[0] }}">
+                {% endfor %}
+            </datalist>
         </div>
         <input class="btn btn-primary" type="submit" value="Start">
     </form>

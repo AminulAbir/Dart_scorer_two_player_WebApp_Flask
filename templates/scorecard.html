@@ -13,31 +13,50 @@
 {% endblock %}
 {% block content %}
     <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Match Played</th>
-      <th scope="col">Number of Wins</th>
-      <th scope="col">Number of Losses</th>
-      <th scope="col">Win Rate</th>
-      <th scope="col">Score Bulls</th>
-      <th scope="col">Score 60s</th>
-      <th scope="col">Score 180s</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for info in infos %}
+      <thead>
         <tr>
-          <th scope="row">{{ info[1] }}</th>
-          <td>{{ info[2] }}</td>
-          <td>{{ info[3] }}</td>
-          <td>{{ info[4] }}</td>
-          <td>{{ info[5] }}</td>
-          <td>{{ info[6] }}</td>
-          <td>{{ info[7] }}</td>
-          <td>{{ info[8] }}</td>
+          <th scope="col">Name</th>
+          <th scope="col">Match Played</th>
+          <th scope="col">Number of Wins</th>
+          <th scope="col">Number of Losses</th>
+          <th scope="col">Win Rate</th>
+          <th scope="col">Score Bulls</th>
+          <th scope="col">Score 60s</th>
+          <th scope="col">Score 180s</th>
         </tr>
-    {% endfor %}
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+        {% for info in infos %}
+            <tr>
+              <th scope="row">{{ info[1] }}</th>
+              <td>{{ info[2] }}</td>
+              <td>{{ info[3] }}</td>
+              <td>{{ info[4] }}</td>
+              <td>{{ info[5] }}</td>
+              <td>{{ info[6] }}</td>
+              <td>{{ info[7] }}</td>
+              <td>{{ info[8] }}</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br>
+    {% if showDel %}
+        <a href="{{ url_for('delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>
+    {% endif %}
+    {% if condition %}
+        <br>
+        <form action={{ url_for("delete") }} method="POST">
+            <div class="mb-3 row">
+                <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Enter User Name: </label>
+                <input type="text" class="col-sm-5 col-form-label" list="players" name="nm">
+                <datalist id="players">
+                    {% for name in nameData %}
+                        <option value="{{ name[0] }}">
+                    {% endfor %}
+                </datalist>
+            </div>
+            <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+    {% endif %}
 {% endblock %}

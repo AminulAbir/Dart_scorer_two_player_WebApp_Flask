@@ -159,7 +159,7 @@ def info():
 
         cur.close()
         return redirect(url_for("score"))
-    return render_template("info.html")
+    return render_template("info.html", nameData=nameData)
 
 
 @app.route('/score')
@@ -460,7 +460,34 @@ def scorecard():
     cur.execute("SELECT * FROM displayscore order by win DESC, winRate DESC, name ASC")
     infos = cur.fetchall()
     cur.close()
-    return render_template("scorecard.html", infos=infos)
+    return render_template("scorecard.html", infos=infos, showDel=True)
+
+
+@app.route('/delete', methods=['GET', 'POST'])
+def delete():
+    nameList = []
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT name FROM player") # this querry for autocomplete suggestion box
+    nameData = cur.fetchall()
+
+    # for converting tuples in list
+    for name in nameData:
+        nameList.append(name[0])
+
+    if request.method == "POST":
+        name = request.form.get("nm")
+        if name in nameList:
+            cur.execute("DELETE FROM player WHERE name = %s", (name,))
+            mysql.connection.commit()
+            cur.close()
+            flash("The User Name is successfully deleted", "success")
+            return redirect(url_for("scorecard"))
+        else:
+            flash("The User Name does not exist", "danger")
+            return redirect(url_for("scorecard"))
+
+    cur.close()
+    return render_template("scorecard.html", condition=True, nameData=nameData)
 
 
 if __name__ == '__main__':
