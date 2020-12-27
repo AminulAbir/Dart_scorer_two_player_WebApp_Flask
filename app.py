@@ -275,7 +275,7 @@ def player1A():
 
         # for maintaining the sequence who will do his first 3 turns
         if turnA < 0:
-            turnA = int(request.form.get("turnA"))
+            turnA = int(request.form.get("turnA"))  # or we can write here direct 3 instead of this request form
             boolB = False
 
         # for calculating score of bulls, 60 and 180 of playerA
@@ -386,7 +386,7 @@ def player2B():
 
         # for maintaining the sequence who will do his first 3 turns
         if turnB < 0:
-            turnB = int(request.form.get("turnB"))
+            turnB = int(request.form.get("turnB"))  # or we can write here direct 3 instead of this request form
             boolA = False
 
         # for calculating scores of bulls. 60 and 180 of playerB
