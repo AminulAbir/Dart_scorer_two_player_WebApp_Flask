@@ -6,6 +6,50 @@
 {% block content %}
     <div class="container">
         <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ p1name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                {% if boolA %}
+                    <!-- this one for always the cursor on in this textbar. no need to click always-->
+                    <body OnLoad="document.myform1.sc1.focus();">
+                        <form name="myform1" action={{ url_for("player1A") }} method="POST">
+                            Score: <input type="number" name="sc1" required>
+                            <input type="submit" value="Calculate">
+                            <input type="hidden" name="turnA" value="3">
+                         </form>
+
+                    <!-- same as above body OnLoad but if we dont want to write those in body we just simply write here after form
+                    <script type="text/javascript" language="JavaScript">
+                        document.forms['myform'].elements['mytextfield'].focus();
+                    </script>
+                    -->
+
+                    </body>
+                {% endif %}
+                <br>
+                <br>
+                <div class="d-inline p-2 bg-primary text-white">Required Score: {{ scoreA }}</div>
+
+                <!-- uncomment if we use recommend functions
+                {% if bool1 %}
+                    {% if str1 or str2 or str3 %}
+                        <p>Recommended Shots: {{ str1 }} {{ str2 }} {{ str3 }}</p>
+                    {% endif %}
+                {% endif %}
+                -->
+
+            </div>
             <div class="col order-last">
                 <table class="table">
                     <thead>
@@ -17,63 +61,39 @@
                         <tr>
                             <td>{{ p2name }}</td>
                         </tr>
-                     </tbody>
+                    </tbody>
                 </table>
-        <br>
-        {% if boolB %}
-            <form action={{ url_for("player2B") }} method="POST">
-                Score: <input type="number" name="sc2" required>
-                <input type="submit" value="Calculate">
-                <input type="hidden" name="turnB" value="3">
-            </form>
-        {% endif %}
-        <br>
-        <br>
-    <div class="d-inline p-2 bg-primary text-white">Required Score: {{ scoreB }}</div>
+                <br>
+                {% if boolB %}
+                    <!-- this one for always the cursor on in this textbar. no need to click always-->
+                    <body OnLoad="document.myform2.sc2.focus();">
+                        <form name="myform2" action={{ url_for("player2B") }} method="POST">
+                            Score: <input type="number" name="sc2" required>
+                            <input type="submit" value="Calculate">
+                            <input type="hidden" name="turnB" value="3">
+                        </form>
 
-    <!-- uncomment if we use recommend functions
-    {% if bool2 %}
-        {% if str1 or str2 or str3 %}
-            <p>Recommended Shots: {{ str1 }} {{ str2 }} {{ str3 }}</p>
-        {% endif %}
-    {% endif %}
-    -->
+                        <!-- same as above body OnLoad but if we dont want to write those in body we just simply write here after form
+                        <script type="text/javascript" language="JavaScript">
+                            document.forms['myform'].elements['mytextfield'].focus();
+                        </script>
+                        -->
 
+                     </body>
+                {% endif %}
+                <br>
+                <br>
+                <div class="d-inline p-2 bg-primary text-white">Required Score: {{ scoreB }}</div>
+
+                <!-- uncomment if we use recommend functions
+                {% if bool2 %}
+                    {% if str1 or str2 or str3 %}
+                        <p>Recommended Shots: {{ str1 }} {{ str2 }} {{ str3 }}</p>
+                    {% endif %}
+                {% endif %}
+                -->
+
+            </div>
+        </div>
     </div>
-    <div class="col">
-        <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ p1name }}</td>
-                        </tr>
-                     </tbody>
-                </table>
-        <br>
-        {% if boolA %}
-            <form action={{ url_for("player1A") }} method="POST">
-                Score: <input type="number" name="sc1" required>
-                <input type="submit" value="Calculate">
-                <input type="hidden" name="turnA" value="3">
-             </form>
-        {% endif %}
-        <br>
-        <br>
-    <div class="d-inline p-2 bg-primary text-white">Required Score: {{ scoreA }}</div>
-
-    <!-- uncomment if we use recommend functions
-    {% if bool1 %}
-        {% if str1 or str2 or str3 %}
-            <p>Recommended Shots: {{ str1 }} {{ str2 }} {{ str3 }}</p>
-        {% endif %}
-    {% endif %}
-    -->
-
-    </div>
-  </div>
-</div>
 {% endblock %}
